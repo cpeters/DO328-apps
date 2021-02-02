@@ -1,13 +1,13 @@
 const Axios = require("axios");
-const { Tags, FORMAT_HTTP_HEADERS } = require("opentracing");
+// const { Tags, FORMAT_HTTP_HEADERS } = require("opentracing");
 
 
 module.exports = class RestClient {
 
-    constructor(baseURL, tracer) {
+    constructor(baseURL) {
         this.baseURL = baseURL;
         this.axios = Axios.create({ baseURL });
-        this.tracer = tracer;
+        // this.tracer = tracer;
     }
 
     async get(url, rootSpan) {
@@ -18,7 +18,7 @@ module.exports = class RestClient {
             const response = await this.axios.get(url, this._buildAxiosRequestConfig(span));
             return response.data;
         } catch (error) {
-            span.setTag(Tags.ERROR, error);
+            // span.setTag(Tags.ERROR, error);
         } finally {
             span.finish();
         }

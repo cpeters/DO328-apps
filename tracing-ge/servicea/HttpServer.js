@@ -1,5 +1,5 @@
 const Fastify = require("fastify");
-const Opentracing = require("opentracing");
+// const Opentracing = require("opentracing");
 
 module.exports = {
     create
@@ -18,7 +18,7 @@ function create(logger, tracer) {
     }
 
     async function traceResponse(request, reply) {
-        request.rootSpan.setTag(Opentracing.Tags.HTTP_STATUS_CODE, reply.res.statusCode);
+        // request.rootSpan.setTag(Opentracing.Tags.HTTP_STATUS_CODE, reply.res.statusCode);
         request.rootSpan.finish();
     }
 }
